@@ -41,3 +41,21 @@ LAN PCs and layer 3 devices should not be able to ping into other LAN areas at t
 Rubric
 
 
+part 2
+
+The second task is to link up the 3 LANs as a single EIGRP AS 1 network and then ensure that links are secure – see the diagram below – again, follow the details on the diagram and ensure your resulting network implements the requirements in the checklist below:
+
+
+
+Configuration Checklist:
+
+Change the serial connections over to use the PPP protocol instead of the default HDLC.
+Add CHAP authentication to all serial links and use a different authentication key for each one – the choice of keys is yours.
+Ensure that R1, R2 and R3 can ping each others s0/0/0
+Create 2 GRE tunnels to link the three border routers (see diagram) and add them to EIGRP AS 1 to link the areas up.
+Also ensure that you stop the redistribution of default routes in EIGRP to prevent “route flapping”
+Once you are sure everything works, add 2 VPN tunnels to protect the GRE traffic. This may mean that internal devices lose contact with the ISP server and PC, this should not be seen as an error.  
+VPNParams.png
+
+By the end of this setup, all LAN devices in all 3 areas should be able to communicate with pings and should be able to access internal server web pages.  The ISP end devices should not be able to get any access.
+
